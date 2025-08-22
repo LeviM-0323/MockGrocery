@@ -57,11 +57,82 @@ $first_name = $_SESSION['first_name'] ?? '';
             <div class="hero-body">
                 <div class="container has-text-centered">
                     <h1 class="title is-1">
-                        Our favourite recipes
+                        Our Favourite Recipes
                     </h1>
                     <h2 class="subtitle is-3">
                         Don't know what to make? We got you.
                     </h2>
+                </div>
+            </div>
+        </section>
+
+        <!-- Recipes Content -->
+        <section class="section">
+            <div class="container">
+                <div class="columns is-multiline">
+                    <div class="column is-one-third">
+                        <div class="box has-text-centered">
+                            <figure class="image is-128x128 mx-auto mb-2">
+                                <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=128&q=80" alt="Avocado Toast">
+                            </figure>
+                            <h3 class="title is-5 mb-1">Avocado Toast Deluxe</h3>
+                            <p class="mb-1">Sourdough bread, ripe avocados, cherry tomatoes, and a sprinkle of chili flakes.</p>
+                            <p class="has-text-grey">Sponsored by: Fresh Avocados</p>
+                        </div>
+                    </div>
+                    <div class="column is-one-third">
+                        <div class="box has-text-centered">
+                            <figure class="image is-128x128 mx-auto mb-2">
+                                <img src="https://images.unsplash.com/photo-1519864600265-abb23847ef2c?auto=format&fit=crop&w=128&q=80" alt="Berry Smoothie">
+                            </figure>
+                            <h3 class="title is-5 mb-1">Berry Power Smoothie</h3>
+                            <p class="mb-1">Mixed berries, banana, Greek yogurt, and a splash of almond milk.</p>
+                            <p class="has-text-grey">Sponsored by: Berry Best Farms</p>
+                        </div>
+                    </div>
+                    <div class="column is-one-third">
+                        <div class="box has-text-centered">
+                            <figure class="image is-128x128 mx-auto mb-2">
+                                <img src="https://images.unsplash.com/photo-1464306076886-debca5e8a6b0?auto=format&fit=crop&w=128&q=80" alt="Veggie Stir Fry">
+                            </figure>
+                            <h3 class="title is-5 mb-1">Quick Veggie Stir Fry</h3>
+                            <p class="mb-1">Broccoli, bell peppers, carrots, and snap peas tossed in a savory sauce.</p>
+                            <p class="has-text-grey">Sponsored by: Green Valley Produce</p>
+                        </div>
+                    </div>
+                    <div class="column is-one-third">
+                        <div class="box has-text-centered">
+                            <figure class="image is-128x128 mx-auto mb-2">
+                                <img src="https://images.unsplash.com/photo-1502741338009-cac2772e18bc?auto=format&fit=crop&w=128&q=80" alt="Classic Omelette">
+                            </figure>
+                            <h3 class="title is-5 mb-1">Classic Omelette</h3>
+                            <p class="mb-1">Farm eggs, cheddar cheese, spinach, and mushrooms for a hearty breakfast.</p>
+                            <p class="has-text-grey">Sponsored by: Sunny Eggs</p>
+                        </div>
+                    </div>
+                    <div class="column is-one-third">
+                        <div class="box has-text-centered">
+                            <figure class="image is-128x128 mx-auto mb-2">
+                                <img src="https://images.unsplash.com/photo-1519864600265-abb23847ef2c?auto=format&fit=crop&w=128&q=80" alt="Fruit Salad">
+                            </figure>
+                            <h3 class="title is-5 mb-1">Fresh Fruit Salad</h3>
+                            <p class="mb-1">A medley of seasonal fruits, honey, and a squeeze of lime.</p>
+                            <p class="has-text-grey">Sponsored by: Orchard Select</p>
+                        </div>
+                    </div>
+                    <div class="column is-one-third">
+                        <div class="box has-text-centered">
+                            <figure class="image is-128x128 mx-auto mb-2">
+                                <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=128&q=80" alt="Hearty Lentil Soup">
+                            </figure>
+                            <h3 class="title is-5 mb-1">Hearty Lentil Soup</h3>
+                            <p class="mb-1">Lentils, carrots, celery, and tomatoes simmered with herbs and spices.</p>
+                            <p class="has-text-grey">Sponsored by: Pantry Essentials</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="has-text-centered mt-5">
+                    <p class="is-size-5">Find all the ingredients for these recipes in our <a href="shop.php">shop</a>!</p>
                 </div>
             </div>
         </section>

@@ -65,7 +65,25 @@ $first_name = $_SESSION['first_name'] ?? '';
                 </div>
             </div>
         </section>
-
+        
+        <!-- About Content -->
+        <section class="section">
+            <div class="container content has-text-centered">
+                <p>
+                    <strong>MockGrocery</strong> is your friendly neighborhood online grocery store, dedicated to making your life easier and your meals fresher. 
+                </p>
+                <p>
+                    We believe grocery shopping should be simple, affordable, and convenient. That's why we offer a wide selection of quality products, fast delivery, and great deals every week.
+                </p>
+                <p>
+                    Whether you're planning a family dinner or just need a few essentials, MockGrocery is here to help—rain or shine!
+                </p>
+                <p>
+                    <em>Thank you for shopping with us!</em>
+                </p>
+            </div>
+        </section>
+        
         <!-- Footer -->
         <footer class="footer has-background has-text-white">
             <div class="content has-text-centered">

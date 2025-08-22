@@ -3,7 +3,6 @@ session_start();
 $is_logged_in = isset($_SESSION['user_id']);
 $first_name = $_SESSION['first_name'] ?? '';
 
-// Connect to the database
 $db_host = 'db';
 $db_user = 'root';
 $db_pass = getenv('MYSQL_ROOT_PASSWORD') ?: '123';
@@ -14,14 +13,12 @@ if ($mysqli->connect_error) {
     die("Database connection failed: " . $mysqli->connect_error);
 }
 
-// Fetch categories
 $categories = [];
 $res = $mysqli->query("SELECT id, name FROM categories ORDER BY name");
 while ($row = $res->fetch_assoc()) {
     $categories[$row['id']] = $row['name'];
 }
 
-// Fetch products grouped by category
 $products_by_cat = [];
 $all_products = [];
 $res = $mysqli->query("SELECT * FROM products ORDER BY category_id, name");
@@ -30,7 +27,6 @@ while ($row = $res->fetch_assoc()) {
     $all_products[$row['id']] = $row;
 }
 
-// --- CART LOGIC ---
 if (!isset($_SESSION['cart'])) {
     $_SESSION['cart'] = [];
 }
@@ -54,12 +50,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['product_id'])) {
     }
 }
 
-// Calculate subtotal/total
 $subtotal_cents = 0;
 foreach ($_SESSION['cart'] as $item) {
     $subtotal_cents += $item['price_cents'] * $item['qty'];
 }
-$total_cents = $subtotal_cents; // Add tax/shipping if needed
+$total_cents = $subtotal_cents * 1.13; 
 ?>
 <!DOCTYPE html>
 <html>
@@ -208,6 +203,7 @@ $total_cents = $subtotal_cents; // Add tax/shipping if needed
                             <?php endforeach; ?>
                         </ul>
                         <p class="mt-3"><strong>Subtotal:</strong> $<?= number_format($subtotal_cents/100, 2) ?></p>
+                        <p><strong>Tax (13%):</strong> $<?= number_format(($subtotal_cents * 0.13)/100, 2) ?></p>
                         <p><strong>Total:</strong> $<?= number_format($total_cents/100, 2) ?></p>
                     <?php endif; ?>
                     <h2 class="title is-4 mt-6 mb-4" id="checkout">Checkout</h2>

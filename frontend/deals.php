@@ -57,11 +57,83 @@ $first_name = $_SESSION['first_name'] ?? '';
             <div class="hero-body">
                 <div class="container has-text-centered">
                     <h1 class="title is-1">
-                        Weekly deals
+                        Weekly Deals
                     </h1>
                     <h2 class="subtitle is-3">
                         Always great prices and selection!
                     </h2>
+                </div>
+            </div>
+        </section>
+
+        <!-- Deals Content -->
+        <section class="section">
+            <div class="container">
+                <div class="columns is-multiline">
+                    <div class="column is-one-third">
+                        <div class="box has-text-centered">
+                            <figure class="image is-128x128 mx-auto mb-2">
+                                <img src="https://images.unsplash.com/photo-1502741338009-cac2772e18bc?auto=format&fit=crop&w=128&q=80" alt="Fresh Strawberries">
+                            </figure>
+                            <h3 class="title is-5 mb-1">Fresh Strawberries</h3>
+                            <p class="mb-1"><del>$3.99</del> <strong class="has-text-success">$2.49</strong> / pint</p>
+                            <p class="has-text-grey">Save $1.50 this week only!</p>
+                        </div>
+                    </div>
+                    <div class="column is-one-third">
+                        <div class="box has-text-centered">
+                            <figure class="image is-128x128 mx-auto mb-2">
+                                <img src="https://images.unsplash.com/photo-1519864600265-abb23847ef2c?auto=format&fit=crop&w=128&q=80" alt="Organic Avocados">
+                            </figure>
+                            <h3 class="title is-5 mb-1">Organic Avocados (3 pack)</h3>
+                            <p class="mb-1"><del>$4.99</del> <strong class="has-text-success">$3.49</strong></p>
+                            <p class="has-text-grey">Perfect for guacamole!</p>
+                        </div>
+                    </div>
+                    <div class="column is-one-third">
+                        <div class="box has-text-centered">
+                            <figure class="image is-128x128 mx-auto mb-2">
+                                <img src="https://images.unsplash.com/photo-1464306076886-debca5e8a6b0?auto=format&fit=crop&w=128&q=80" alt="Bakery Bread">
+                            </figure>
+                            <h3 class="title is-5 mb-1">Bakery Sourdough Bread</h3>
+                            <p class="mb-1"><del>$5.49</del> <strong class="has-text-success">$3.99</strong></p>
+                            <p class="has-text-grey">Freshly baked every morning.</p>
+                        </div>
+                    </div>
+                    <div class="column is-one-third">
+                        <div class="box has-text-centered">
+                            <figure class="image is-128x128 mx-auto mb-2">
+                                <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=128&q=80" alt="Milk">
+                            </figure>
+                            <h3 class="title is-5 mb-1">2% Milk (1 Gallon)</h3>
+                            <p class="mb-1"><del>$3.29</del> <strong class="has-text-success">$2.49</strong></p>
+                            <p class="has-text-grey">Dairy aisle special!</p>
+                        </div>
+                    </div>
+                    <div class="column is-one-third">
+                        <div class="box has-text-centered">
+                            <figure class="image is-128x128 mx-auto mb-2">
+                                <img src="https://images.unsplash.com/photo-1519864600265-abb23847ef2c?auto=format&fit=crop&w=128&q=80" alt="Eggs">
+                            </figure>
+                            <h3 class="title is-5 mb-1">Large Brown Eggs (Dozen)</h3>
+                            <p class="mb-1"><del>$2.99</del> <strong class="has-text-success">$1.99</strong></p>
+                            <p class="has-text-grey">Farm fresh savings!</p>
+                        </div>
+                    </div>
+                    <div class="column is-one-third">
+                        <div class="box has-text-centered">
+                            <figure class="image is-128x128 mx-auto mb-2">
+                                <img src="https://images.unsplash.com/photo-1502741338009-cac2772e18bc?auto=format&fit=crop&w=128&q=80" alt="Apples">
+                            </figure>
+                            <h3 class="title is-5 mb-1">Honeycrisp Apples (lb)</h3>
+                            <p class="mb-1"><del>$2.49</del> <strong class="has-text-success">$1.49</strong></p>
+                            <p class="has-text-grey">Crisp, sweet, and juicy!</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="has-text-centered mt-5">
+                    <p class="is-size-5">Check back every week for new deals and savings!</p>
+                    <a href="shop.php" class="button is-success is-medium mt-3">Shop All Deals</a>
                 </div>
             </div>
         </section>
