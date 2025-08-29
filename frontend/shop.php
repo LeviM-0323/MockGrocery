@@ -33,17 +33,18 @@ if (!isset($_SESSION['cart'])) {
 $toast_message = '';
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['product_id'])) {
     $pid = $_POST['product_id'];
+    $qty = isset($_POST['qty']) ? max(1, intval($_POST['qty'])) : 1;
     if (isset($all_products[$pid])) {
-        // Add or increment quantity
+        // Add or increment quantity/weight
         if (isset($_SESSION['cart'][$pid])) {
-            $_SESSION['cart'][$pid]['qty'] += 1;
+            $_SESSION['cart'][$pid]['qty'] += $qty;
         } else {
             $_SESSION['cart'][$pid] = [
                 'id' => $pid,
                 'name' => $all_products[$pid]['name'],
                 'price_cents' => $all_products[$pid]['price_cents'],
                 'uom' => $all_products[$pid]['uom'],
-                'qty' => 1
+                'qty' => $qty
             ];
         }
         $toast_message = "{$all_products[$pid]['name']} added to cart!";
@@ -63,6 +64,7 @@ $total_cents = $subtotal_cents * 1.13;
         <meta charset="utf-8">
         <title>MockGrocery Frontend</title>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css"> 
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
         <style>
             .navbar-burger span { background-color: #48c774 !important; }
             .navbar-burger.is-active span { background-color: #257942 !important; }
@@ -85,6 +87,57 @@ $total_cents = $subtotal_cents * 1.13;
                 z-index: 9999;
                 min-width: 200px;
             }
+            .cart-drawer {
+                position: fixed;
+                top: 70px;
+                right: 0;
+                width: 340px;
+                max-width: 90vw;
+                height: calc(100vh - 80px);
+                background: #fff;
+                box-shadow: -2px 0 12px rgba(0,0,0,0.15);
+                border-left: 1px solid #eee;
+                z-index: 1200;
+                transform: translateX(100%);
+                transition: transform 0.3s cubic-bezier(.4,0,.2,1);
+                overflow-y: auto;
+                padding: 2rem 1.5rem 1.5rem 1.5rem;
+            }
+            .cart-drawer.open {
+                transform: translateX(0);
+            }
+            .cart-drawer .close-btn {
+                position: absolute;
+                top: 1rem;
+                right: 1rem;
+                background: none;
+                border: none;
+                font-size: 1.5rem;
+                cursor: pointer;
+            }
+            .cart-toggle-btn {
+                position: fixed;
+                top: 90px;
+                right: 20px;
+                z-index: 1300;
+                background: #48c774;
+                color: #fff;
+                border: none;
+                border-radius: 50%;
+                width: 56px;
+                height: 56px;
+                box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+                font-size: 2rem;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                cursor: pointer;
+            }
+            @media (max-width: 1023px) {
+                .cart-drawer, .cart-toggle-btn {
+                    top: 60px;
+                }
+            }
         </style>
         <script>
             window.__TOAST_MESSAGE__ = <?= json_encode($toast_message) ?>;
@@ -93,6 +146,50 @@ $total_cents = $subtotal_cents * 1.13;
     <body class="has-navbar-fixed-top">
         <!-- Toast Notification -->
         <div id="toast" class="notification is-success"></div>
+
+        <!-- Cart Toggle Button -->
+        <button id="cartToggleBtn" class="cart-toggle-btn" aria-label="Open cart">
+            <span class="icon"><i class="fa-solid fa-shopping-cart"></i></span>
+        </button>
+
+        <!-- Cart Drawer -->
+        <div id="cartDrawer" class="cart-drawer box has-background-dark">
+            <button class="delete is-large close-btn" id="closeCartDrawer" aria-label="Close cart"></button>
+            <h2 class="title is-4 mb-4 has-text-white" id="review">
+                <span class="icon-text">
+                    <span class="icon has-text-white"><i class="fas fa-shopping-cart"></i></span>
+                    <span>Cart Review</span>
+                </span>
+            </h2>
+            <?php if (empty($_SESSION['cart'])): ?>
+                <div class="notification is-warning is-dark">Your cart is empty.</div>
+            <?php else: ?>
+                <ul class="mb-4">
+                    <?php foreach ($_SESSION['cart'] as $item): ?>
+                        <li class="mb-2">
+                            <span class="has-text-weight-semibold has-text-white"><?= htmlspecialchars($item['name']) ?></span>
+                            <span class="tag is-success is-light ml-2"><?= $item['qty'] ?> <?= $item['uom'] ? htmlspecialchars($item['uom']) : '' ?></span>
+                            <span class="has-text-grey-light ml-2">× $<?= number_format($item['price_cents']/100, 2) ?><?= $item['uom'] ? ' / ' . htmlspecialchars($item['uom']) : '' ?></span>
+                        </li>
+                    <?php endforeach; ?>
+                </ul>
+                <div class="content">
+                    <p class="mb-2"><strong class="has-text-white">Subtotal:</strong> <span class="has-text-info has-text-weight-bold">$<?= number_format($subtotal_cents/100, 2) ?></span></p>
+                    <p class="mb-2"><strong class="has-text-white">Tax (13%):</strong> <span class="has-text-info has-text-weight-bold">$<?= number_format(($subtotal_cents * 0.13)/100, 2) ?></span></p>
+                    <p class="mb-4"><strong class="has-text-white">Total:</strong> <span class="has-text-primary has-text-weight-bold is-size-5">$<?= number_format($total_cents/100, 2) ?></span></p>
+                </div>
+            <?php endif; ?>
+            <h2 class="title is-5 mt-5 mb-3 has-text-grey-lighter" id="checkout">Checkout</h2>
+            <label class="label">Order type</label>
+            <input class="input" type="radio" name="orderType" required>
+            <div class="field">
+                <label class="label">Pickup time</label>
+                <div class="control">
+                    <input class="input" type="datetime-local" name="pickupTime" required>
+                </div>
+            </div>
+            <button class="button is-success" type="submit">Place order</button>
+        </div>
 
         <!-- Navbar -->
         <nav class="navbar is-fixed-top" role="navigation" aria-label="Main navigation">
@@ -133,9 +230,11 @@ $total_cents = $subtotal_cents * 1.13;
                 </div>
             </div>
         </section>
-
+        
+        <!-- Main content -->
         <div class="container">
             <div class="columns">
+
                 <!-- Side Navbar -->
                 <div class="column is-2">
                     <aside class="menu side-menu">
@@ -145,13 +244,9 @@ $total_cents = $subtotal_cents * 1.13;
                                 <li><a href="#cat<?= $cat_id ?>"><?= htmlspecialchars($cat_name) ?></a></li>
                             <?php endforeach; ?>
                         </ul>
-                        <p class="menu-label">Cart</p>
-                        <ul class="menu-list">
-                            <li><a href="#review">Review items</a></li>
-                            <li><a href="#checkout">Checkout</a></li>
-                        </ul>
                     </aside>
                 </div>
+                
                 <!-- Products by Category -->
                 <div class="column is-10">
                     <?php foreach ($categories as $cat_id => $cat_name): ?>
@@ -162,7 +257,7 @@ $total_cents = $subtotal_cents * 1.13;
                                     <div class="column is-one-quarter">
                                         <div class="box has-text-centered">
                                             <figure class="image is-128x128 mx-auto mb-2">
-                                                <img src="<?= htmlspecialchars($product['image_url'] ?? 'https://placehold.co/128x128?text=No+Image') ?>" alt="<?= htmlspecialchars($product['name'] ?? 'Product') ?>">
+                                                <img src="<?= htmlspecialchars($product['image_url'] ?? 'https://placehold.co/128x128?text=No+Image') ?>" alt="<?= htmlspecialchars($product['name'] ?? 'Product') ?>" loading="lazy" width="128" height="128">
                                             </figure>
                                             <h3 class="title is-5 mb-1"><?= htmlspecialchars($product['name'] ?? '') ?></h3>
                                             <?php if (!empty($product['brand'])): ?>
@@ -175,8 +270,13 @@ $total_cents = $subtotal_cents * 1.13;
                                                 <span class="has-text-grey-light"><?= htmlspecialchars($product['uom'] ?? '') ?></span>
                                             </p>
                                             <p class="mb-2"><?= htmlspecialchars($product['package_size'] ?? '') ?></p>
-                                            <form method="post" action="#cat<?= $cat_id ?>">
+                                            <form method="post" action="#cat<?= $cat_id ?>" style="display:inline-block; width:100%;">
                                                 <input type="hidden" name="product_id" value="<?= $product['id'] ?>">
+                                                <?php if (strtoupper($product['uom']) === 'EA'): ?>
+                                                    <input class="input is-small mb-2" type="number" name="qty" min="1" value="1" style="width:70px; display:inline-block;" placeholder="Qty">
+                                                <?php elseif (strtoupper($product['uom']) === 'KG'): ?>
+                                                    <input class="input is-small mb-2" type="number" name="qty" min="0.01" step="0.01" value="0.25" style="width:90px; display:inline-block;" placeholder="Kg">
+                                                <?php endif; ?>
                                                 <button class="button is-success is-small" type="submit">
                                                     Add to Cart
                                                 </button>
@@ -187,27 +287,6 @@ $total_cents = $subtotal_cents * 1.13;
                             </div>
                         <?php endif; ?>
                     <?php endforeach; ?>
-
-                    <!-- Cart Review Section -->
-                    <hr>
-                    <h2 class="title is-4 mt-6 mb-4" id="review">Cart Review</h2>
-                    <?php if (empty($_SESSION['cart'])): ?>
-                        <p>Your cart is empty.</p>
-                    <?php else: ?>
-                        <ul>
-                            <?php foreach ($_SESSION['cart'] as $item): ?>
-                                <li>
-                                    <?= htmlspecialchars($item['name']) ?> 
-                                    (<?= $item['qty'] ?> × $<?= number_format($item['price_cents']/100, 2) ?><?= $item['uom'] ? ' / ' . htmlspecialchars($item['uom']) : '' ?>)
-                                </li>
-                            <?php endforeach; ?>
-                        </ul>
-                        <p class="mt-3"><strong>Subtotal:</strong> $<?= number_format($subtotal_cents/100, 2) ?></p>
-                        <p><strong>Tax (13%):</strong> $<?= number_format(($subtotal_cents * 0.13)/100, 2) ?></p>
-                        <p><strong>Total:</strong> $<?= number_format($total_cents/100, 2) ?></p>
-                    <?php endif; ?>
-                    <h2 class="title is-4 mt-6 mb-4" id="checkout">Checkout</h2>
-                    <p>Checkout functionality coming soon!</p>
                 </div>
             </div>
         </div>

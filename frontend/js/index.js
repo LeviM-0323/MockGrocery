@@ -19,4 +19,26 @@ document.addEventListener('DOMContentLoaded', () => {
             toast.style.display = 'none';
         }, 2000);
     }
+
+    // Cart drawer logic
+    const cartDrawer = document.getElementById('cartDrawer');
+    const cartToggleBtn = document.getElementById('cartToggleBtn');
+    const closeCartDrawer = document.getElementById('closeCartDrawer');
+    if (cartDrawer && cartToggleBtn && closeCartDrawer) {
+        cartToggleBtn.addEventListener('click', function() {
+            cartDrawer.classList.add('open');
+            cartToggleBtn.classList.add('is-hidden');
+        });
+        closeCartDrawer.addEventListener('click', function() {
+            cartDrawer.classList.remove('open');
+            cartToggleBtn.classList.remove('is-hidden');
+        });
+        // Optional: Close drawer on outside click
+        document.addEventListener('mousedown', function(e) {
+            if (cartDrawer.classList.contains('open') && !cartDrawer.contains(e.target) && e.target !== cartToggleBtn) {
+                cartDrawer.classList.remove('open');
+                cartToggleBtn.classList.remove('is-hidden');
+            }
+        });
+    }
 });
