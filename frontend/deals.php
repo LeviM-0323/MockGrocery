@@ -73,7 +73,7 @@ $first_name = $_SESSION['first_name'] ?? '';
                     <div class="column is-one-third">
                         <div class="box has-text-centered">
                             <figure class="image is-128x128 mx-auto mb-2">
-                                <img src="https://images.unsplash.com/photo-1502741338009-cac2772e18bc?auto=format&fit=crop&w=128&q=80" alt="Fresh Strawberries">
+                                <img src="https://assets.shop.loblaws.ca/products/20049778001/b2/en/front/20049778001_front_a06_@2.png" alt="Fresh Strawberries">
                             </figure>
                             <h3 class="title is-5 mb-1">Fresh Strawberries</h3>
                             <p class="mb-1"><del>$3.99</del> <strong class="has-text-success">$2.49</strong> / pint</p>
@@ -83,7 +83,7 @@ $first_name = $_SESSION['first_name'] ?? '';
                     <div class="column is-one-third">
                         <div class="box has-text-centered">
                             <figure class="image is-128x128 mx-auto mb-2">
-                                <img src="https://images.unsplash.com/photo-1519864600265-abb23847ef2c?auto=format&fit=crop&w=128&q=80" alt="Organic Avocados">
+                                <img src="https://assets.shop.loblaws.ca/products/21097012001/b2/en/front/21097012001_front_a06_@2.png" alt="Organic Avocados">
                             </figure>
                             <h3 class="title is-5 mb-1">Organic Avocados (3 pack)</h3>
                             <p class="mb-1"><del>$4.99</del> <strong class="has-text-success">$3.49</strong></p>
@@ -93,7 +93,7 @@ $first_name = $_SESSION['first_name'] ?? '';
                     <div class="column is-one-third">
                         <div class="box has-text-centered">
                             <figure class="image is-128x128 mx-auto mb-2">
-                                <img src="https://images.unsplash.com/photo-1464306076886-debca5e8a6b0?auto=format&fit=crop&w=128&q=80" alt="Bakery Bread">
+                                <img src="https://assets.shop.loblaws.ca/products/20132458/b2/en/front/20132458_front_a06_@2.png" alt="Bakery Bread">
                             </figure>
                             <h3 class="title is-5 mb-1">Bakery Sourdough Bread</h3>
                             <p class="mb-1"><del>$5.49</del> <strong class="has-text-success">$3.99</strong></p>
@@ -103,7 +103,7 @@ $first_name = $_SESSION['first_name'] ?? '';
                     <div class="column is-one-third">
                         <div class="box has-text-centered">
                             <figure class="image is-128x128 mx-auto mb-2">
-                                <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=128&q=80" alt="Milk">
+                                <img src="https://assets.shop.loblaws.ca/products/20962518/b2/en/front/20962518_front_a06_@2.png" alt="Milk">
                             </figure>
                             <h3 class="title is-5 mb-1">2% Milk (1 Gallon)</h3>
                             <p class="mb-1"><del>$3.29</del> <strong class="has-text-success">$2.49</strong></p>
@@ -113,7 +113,7 @@ $first_name = $_SESSION['first_name'] ?? '';
                     <div class="column is-one-third">
                         <div class="box has-text-centered">
                             <figure class="image is-128x128 mx-auto mb-2">
-                                <img src="https://images.unsplash.com/photo-1519864600265-abb23847ef2c?auto=format&fit=crop&w=128&q=80" alt="Eggs">
+                                <img src="https://assets.shop.loblaws.ca/products/20813936001/b2/en/front/20813936001_front_a06_@2.png" alt="Eggs">
                             </figure>
                             <h3 class="title is-5 mb-1">Large Brown Eggs (Dozen)</h3>
                             <p class="mb-1"><del>$2.99</del> <strong class="has-text-success">$1.99</strong></p>
@@ -123,7 +123,7 @@ $first_name = $_SESSION['first_name'] ?? '';
                     <div class="column is-one-third">
                         <div class="box has-text-centered">
                             <figure class="image is-128x128 mx-auto mb-2">
-                                <img src="https://images.unsplash.com/photo-1502741338009-cac2772e18bc?auto=format&fit=crop&w=128&q=80" alt="Apples">
+                                <img src="https://assets.shop.loblaws.ca/products/20132621001/b2/en/front/20132621001_front_a06_@2.png" alt="Apples">
                             </figure>
                             <h3 class="title is-5 mb-1">Honeycrisp Apples (lb)</h3>
                             <p class="mb-1"><del>$2.49</del> <strong class="has-text-success">$1.49</strong></p>

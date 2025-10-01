@@ -41,7 +41,7 @@ services:
     ports:
       - "3306:3306"
     volumes:
-      - dbdata:/var/lib/mysql
+      - ./config/db-config/:/var/lib/mysql
       - ./db/init:/docker-entrypoint-initdb.d
     restart: unless-stopped
 
@@ -54,5 +54,19 @@ services:
     depends_on:
       - db
 
-volumes:
-  dbdata:
+  importer:
+    image: python:3.12
+    container_name: grocery_importer
+    depends_on:
+      - db
+    working_dir: /app
+    volumes:
+      - ./scripts:/app
+    environment:
+      - DB_HOST=db
+      - DB_USER=${MYSQL_USER}
+      - DB_PASSWORD=${MYSQL_PASSWORD}
+      - DB_NAME=${MYSQL_DATABASE}
+    command: >
+      sh -c "pip install pandas mysql-connector-python &&
+             python import_products.py"

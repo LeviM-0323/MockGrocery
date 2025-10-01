@@ -1,0 +1,14 @@
+The basics
+[] Users can sign up and log in
+[] Shop for products page
+[] Users can fill cart, pick order type and time, then place order with neccessary details (date, address, type, etc)
+[] Employees can see placed orders, select one order, then mark items as "picked" one by one
+[] Employees can mark orders as delivered
+[] Admins (managers) can see inventory levels, order more of a product, and review placed orders
+
+More advanced
+[] Substitution items
+[] Partial quantities available
+[] Rewards points
+
+Super advanced
